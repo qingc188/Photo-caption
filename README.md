@@ -1,74 +1,74 @@
-# 简媜文风摄影配文技能（jianzhen-photo-caption）
+# jianzhen-photo-caption — Jane Zhen-style Photo Captions
 
-给照片生成**简媜（台湾散文家）风格**的配文——一次输出两部分：
+Generate **captions in the literary style of Jane Zhen (简媜, Taiwanese essayist)** for your photos. One run produces two parts:
 
-1. **25 条最相关的简媜原文摘句**（每条附《书名》（篇名）出处 + 与照片画面的对应理由，含上下句片段、氛围相近句）
-2. **15 条原创配文**：散文 ×5、现代诗 ×5、短句 ×5（模仿简媜的句式呼吸、物我交融与用词逻辑，句子全新创作，不挪用原文）
+1. **25 most relevant excerpts from Jane Zhen's works** — each with 《book》(essay) source attribution and a one-line reason connecting it to the photo (supports multi-sentence fragments and mood-matched passages)
+2. **15 original captions**: 5 prose pieces, 5 modern poems, 5 short lines — written in Jane Zhen's sentence rhythm, image logic, and diction, but fully original (no verbatim reuse of her sentences)
 
-适用于摄影自媒体、小红书/朋友圈图文、视频封面配文、图片意境文案等场景。
+Great for photography social media, Xiaohongshu / Moments posts, video cover captions, and aesthetic image copy.
 
-## 特点
+## Features
 
-- **1521 条语料**：内置简媜公开书摘/名句库，90 个书目分组，覆盖《女儿红》《水问》《红婴仔》《我为你洒下月光》《梦游书》《空灵》等代表作
-- **零第三方依赖**：检索脚本只用 Python 标准库，纯本地运行，不联网、不发送任何数据
-- **渐进式加载**：语料按需检索，不整库塞进上下文，任何 AI 都能跑
-- **可再生成**：每轮交付后主动询问是否再来一轮不重复的供选择
+- **1,521 curated excerpts**: built-in public quote / famous-line corpus from Jane Zhen, grouped across 90 books and essays — including *女儿红 (The Pink Bride)*, *水问 (Asking the Water)*, *红婴仔 (The Red Infant)*, *我为你洒下月光 (I Shed Moonlight for You)*, *梦游书 (The Sleepwalking Book)*, *空灵 (The Ethereal)*, and more
+- **Zero third-party dependencies**: the search script uses only Python's standard library, runs fully offline, sends no data anywhere
+- **Progressive disclosure**: the corpus is searched on demand rather than loaded wholesale into context, so it works in any AI environment
+- **Regenerable**: after each delivery it asks whether you'd like another completely different round of options
 
-## 安装
+## Installation
 
-把 `jianzhen-photo-caption` 整个文件夹放进你的 AI 的 **skills 目录**（不同的 AI 位置不同）：
+Put the whole `jianzhen-photo-caption` folder into your AI's **skills directory** (location varies by product):
 
-- **Claude Desktop / Claude Code**：`~/.claude/skills/`
-- **豆包 / 其他客户端**：在设置里找到"技能 / Skills / 技能库"入口，指向此文件夹
-- **Cursor 等**：放入项目或全局的 skills 目录
+- **Claude Desktop / Claude Code**: `~/.claude/skills/`
+- **Doubao / other clients**: look for "Skills / 技能库" in Settings and point it at this folder
+- **Cursor etc.**: place it in the project or global skills directory
 
-放好后重启/刷新 AI，让它扫描到新技能。
+Restart / refresh your AI afterward so it picks up the new skill.
 
-## 使用
+## Usage
 
-直接对 AI 说话即可自动触发，例如：
+Just talk to the AI naturally — it auto-triggers. For example:
 
-> 「帮这张照片写一段简媜风格的配文」
+> "Write a caption in the style of Jane Zhen for this photo."
 
-也可以点名触发：
+Or name the skill explicitly:
 
-> 「用 jianzhen-photo-caption 这个技能给这张照片配文」
+> "Use the jianzhen-photo-caption skill to caption this photo."
 
-AI 会自动执行：解析照片意象 → 检索语料库 → 精选 25 句原文（附出处+理由）→ 仿简媜文风生成 15 条配文 → 询问是否再来一轮。
+The AI will: parse the photo's imagery → search the corpus → pick 25 excerpts (with sources + reasons) → generate 15 original captions in Jane Zhen's style → ask if you'd like another round.
 
-## 输出示例
+## Sample Output
 
-> 画面：小区空地，一棵大树被花坛围在中央，红塑胶地，几张空木椅，午后斜光。
+> Scene: an empty plaza, a large tree ringed by a flower bed, red rubber pavement, a few wooden benches, afternoon slanting light.
 
-原文摘句节选：
+Excerpts:
 > 「门墙边，老树浓荫，曳着天风；草色釉青，三三两两的粉蝶梭游。」——《女儿红》（四月裂帛）
 > 「枯坐半日，心思缥缈，如浮云、流光无法拘捕入罐。」——《女儿红·序》
 
-原创配文节选：
+Original poem excerpt:
 > 老树把一年又一年的叶子，交给风，交给雨，交给秋天，交得那么大方，仿佛它从不心疼。可它偷偷把年轮，一圈一圈，藏进身体里。——（现代诗·《老树的话》）
 
-## 目录结构
+## Directory Layout
 
 ```
 jianzhen-photo-caption/
-├── SKILL.md                    # 技能说明 + 5 步工作流（AI 的触发与执行依据）
+├── SKILL.md                    # Skill spec + 5-step workflow (what the AI triggers on and follows)
 ├── references/
-│   ├── corpus/                 # 1521 条简媜语料（85 个 md 文件 + 书目索引）
-│   ├── style_guide.md          # 文风四层知识（词汇/句式/意象/语调 + 禁忌）
-│   ├── delivery-format.md      # 交付口径与质检清单
-│   └── topic-index.md          # 主题 → 情绪基调索引
+│   ├── corpus/                 # 1,521 Jane Zhen excerpts (85 md files + book index)
+│   ├── style_guide.md          # Style knowledge: diction / sentence rhythm / imagery / tone + taboos
+│   ├── delivery-format.md      # Output spec + QA checklist
+│   └── topic-index.md          # Theme → mood index
 └── scripts/
-    └── search_corpus.py        # 语料检索脚本（纯 Python 标准库）
+    └── search_corpus.py        # Corpus search script (pure Python stdlib)
 ```
 
-## 安全
+## Safety
 
-- 检索脚本仅使用 Python 标准库，无网络请求、无文件写入，可放心安装
-- 安装任何第三方技能前，建议先通读其 `SKILL.md` 与脚本内容
+- The search script uses only the Python standard library: no network calls, no file writes — safe to install
+- As a general rule, read through any third-party skill's `SKILL.md` and scripts before installing
 
-## 版权
+## Copyright
 
-语料全部来自**公开渠道可获取的简媜书摘、名句与单篇节选**，每条保留《书名》（篇名）出处标注，不转录任何全集；原创配文为全新创作。如涉及版权问题请联系仓库维护者。
+All corpus entries come from **publicly available book excerpts, famous quotes, and single-essay selections** of Jane Zhen, each retaining its 《book》(essay) source attribution. No full works are transcribed; all captions are original writing. Contact the repository maintainer if any copyright concern arises.
 
 ## License
 
